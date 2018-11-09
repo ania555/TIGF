@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/congress-style.css">
+    <title>Attendance</title>
+</head>
+
+<body>
+    <header>
+        <div class="grid1">
+            <img src="TGFI_logo.png" alt="TGIF logo" id="item1">
+            <h1 id="item2">TGIF</h1>
+        </div>
+    </header>
+
+    <div class="grid1">
+        <nav id="item3" class="navbar navbar-expand-lg navbar-light bg-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="home-starter-page.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Congress 113
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="house-starter-page.html">House</a>
+                            <a class="dropdown-item" href="senate-starter-page.html">Senate</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Attendance
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="house-starter-page.html">House</a>
+                            <a class="dropdown-item" href="senate-starter-page.html">Senate</a>
+                        </div>
+                    </li>
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Party Loyalty
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="house-starter-page.html">House</a>
+                            <a class="dropdown-item" href="senate-starter-page.html">Senate</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <br>
+
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-0"></div>
+            <div class="col-5">
+                <div>
+                    <h4>Attendance</h4>
+                    <p>The Constitution specifies that a majority of members constitutes a quorum to do business in each house. Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in most cases, debates continue even if a majority is not present.</p>
+
+                    <p>The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p> <br> <br>
+                </div>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-6">
+                <div>
+                    <h4>Senate at a glance</h4>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Party</th>
+                                <th>Number of Reps</th>
+                                <th>% Voted with Party</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="Republican">
+                                <td class="to-left">Republican</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr id="Democrat">
+                                <td class="to-left">Democrat</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr id="Independent">
+                                <td class="to-left">Independent</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr id="Total">
+                                <td class="to-left">Total</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-0"></div>
+            <div class="col-6">
+                <h4>Least Engaged (Bottom 10% Attendance)</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="to-left">Name</th>
+                            <th>Number of Missed Votes</th>
+                            <th>% Missed</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leastAttend">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-0"></div>
+            <div class="col-6">
+                <h4>Most Engaged (Top 10% Attendance)</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="to-left">Name</th>
+                            <th>Number of Missed Votes</th>
+                            <th>% Missed</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mostAttend">
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--Table container-->
+    <div>
+
+
+
+
+
+
+    </div>
+    <br><br>
+    <div class="grid1">
+        <footer id="item3" class="footer">2016 TGIF All Rights Reserved</footer>
+    </div>
+    <script src="pro-congress-113-senate.js"></script>
+    <script src="att-loyal-senate.js"></script>
+
+    <script>
+        var container3 = document.getElementById("leastAttend");
+        statistics.minAttendance.forEach(function(item) {
+            var row = container3.insertRow();
+            var memName = row.insertCell();
+            var NumMissedVotes = row.insertCell();
+            var PrMissedVotes = row.insertCell();
+            var att = document.createAttribute("class");
+            att.value = "to-left";
+            memName.setAttributeNode(att);
+            memName.innerHTML = item.first_name + " " + item.last_name;
+            PrMissedVotes.innerHTML = item.missed_votes_pct;
+            NumMissedVotes.innerHTML = item.missed_votes;
+        })
+        var container4 = document.getElementById("mostAttend");
+        statistics.maxAttendance.forEach(function(item) {
+            var row = container4.insertRow();
+            var memName = row.insertCell();
+            var NumMissedVotes = row.insertCell();
+            var PrMissedVotes = row.insertCell();
+            var att = document.createAttribute("class");
+            att.value = "to-left";
+            memName.setAttributeNode(att);
+            memName.innerHTML = item.first_name + " " + item.last_name;
+            PrMissedVotes.innerHTML = item.missed_votes_pct;
+            NumMissedVotes.innerHTML = item.missed_votes;
+        })
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+
+</html>
