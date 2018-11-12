@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/congress-style.css">
-    <title>Senate party loyalty</title>
+    <title>House party loyalty</title>
 </head>
 
 <body>
@@ -63,9 +63,6 @@
     </div>
     <br>
 
-
-
-
     <div class="container">
         <div class="row">
             <div class="col-0"></div>
@@ -77,39 +74,18 @@
             </div>
             <div class="col-1"></div>
             <div class="col-6">
-                <h4>Senate at a glance</h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="to-left">Party</th>
-                    <th>Number of Reps</th>
-                    <th>% Voted with Prty</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr id="Republican">
-                    <td class="to-left">Republican</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-                <tr id="Democrat">
-                    <td class="to-left">Democrat</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-                <tr id="Independent">
-                    <td class="to-left">Independent</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-                <tr id="Total">
-                    <td class="to-left">Total</td>
-                    <td>--</td>
-                    <td>--</td>
-                </tr>
-            </tbody>
-        </table>
-                
+                <h4>House at a glance</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="to-left">Party</th>
+                            <th>Number of Reps</th>
+                            <th>% Voted with Prty</th>
+                        </tr>
+                    </thead>
+                    <tbody id="atGlance">
+                    </tbody>
+                </table>
             </div>
         </div>
     </div><br><br>
@@ -119,58 +95,46 @@
         <div class="row">
             <div class="col-0"></div>
             <div class="col-6">
-               
-        <h4>Least Loyal (Bottom 10% of Party)</h4>
-        <table class="table">
-               <thead>
-                <tr>
-                    <th class="to-left">Name</th>
-                    <th>Number of Party Votes</th>
-                    <th>% Party Votes</th>
-                </tr>
-                </thead>
-                <tbody id="leastLoyal">
-                    
-                </tbody>
-        </table> 
+
+                <h4>Least Loyal (Bottom 10% of Party)</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="to-left">Name</th>
+                            <th>Number of Party Votes</th>
+                            <th>% Party Votes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leastLoyal">
+                    </tbody>
+                </table>
             </div>
             <div class="col-0"></div>
             <div class="col-6">
                 <h4>Most Loyal (Top 10% of Party)</h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="to-left">Name</th>
-                    <th>Number of Party Votes</th>
-                    <th>% Party Votes</th>
-                </tr>
-            </thead>
-            <tbody id="mostLoyal">
-                
-            </tbody>
-        </table> 
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="to-left">Name</th>
+                            <th>Number of Party Votes</th>
+                            <th>% Party Votes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mostLoyal">
+
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div><br><br> 
-        
-        
-        
-        
-    <!--Table container-->
-    
+    </div><br><br>
 
-        
-
-    
     <div class="grid1">
         <footer id="item3" class="footer">2016 TGIF All Rights Reserved</footer>
     </div>
-    <script src="pro-congress-113-senate.js"></script>
-    <script src="att-loyal-senate.js"></script>
-    <script>
-       statistics = {"NumDem":0, "NumRep":0, "NumInd":0, "%votePatyR":0, "%votePatyD":0, "%votePatyI":0,}
-    </script>
-    
+
+   <script src="pro-congress-113-house.js"></script>
+   <script src="att-loyal-house.js"></script>
+   
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

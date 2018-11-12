@@ -22,6 +22,7 @@ function getMemAndPrcVoteParty(field1, field2) {
 }
 
 
+
 //calculate total memb and %votes with party:
 function getTotalMemPrcWparty() {
     var allMemBers = data.results[0].members;
@@ -34,6 +35,7 @@ function getTotalMemPrcWparty() {
     let arrTable1Row = ["Total", allMemBers.length, votWPtyTotal];
     return arrTable1Row;
 }
+
 
 
 //identify the members who least:
@@ -149,4 +151,3 @@ function getTableAttendance(field, field2, field3, field4) {
 getTableAttendance("missed_votes_pct", "missed_votes", "leastAttend", "minAttendance");
 getTableAttendance("missed_votes_pct", "missed_votes", "mostAttend",  "maxAttendance");
 
- 
