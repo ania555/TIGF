@@ -1,4 +1,4 @@
-function getTable() {
+function getTable(data) {
     var allMemBers = data.results[0].members;
     var container = document.getElementById("parlament-data");
 

@@ -1,7 +1,7 @@
-function getTable() {
-    var allMemBers = data.results[0].members;
+function getTable(data) {
     var container = document.getElementById("parlament-data");
-
+    if (!container) return;
+    var allMemBers = data.results[0].members;
     var firstRow = container.insertRow();
     var memBer = document.createElement("th");
     memBer.innerHTML = "#";
@@ -62,4 +62,5 @@ function getTable() {
     }
 
 }
-getTable();
+//getTable();
+

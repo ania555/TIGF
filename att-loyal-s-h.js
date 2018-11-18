@@ -1,4 +1,4 @@
-function getMemAndPrcVoteParty(field1, field2) {
+function getMemAndPrcVoteParty(field1, field2, data) {
     var allMemBers = data.results[0].members;
     let arMembs = [];
     for (var i = 0; i < allMemBers.length; i++) {
@@ -23,7 +23,7 @@ function getMemAndPrcVoteParty(field1, field2) {
 
 
 //calculate total memb and %votes with party:
-function getTotalMemPrcWparty() {
+function getTotalMemPrcWparty(data) {
     var allMemBers = data.results[0].members;
     var sumTotal = 0;
     for (var i = 0; i < allMemBers.length; i++) {
@@ -37,7 +37,7 @@ function getTotalMemPrcWparty() {
 
 
 //identify the members who least:
-function getLeast(field) {
+function getLeast(field, data) {
     var allMemBers = data.results[0].members;
     var prcTenS = (allMemBers.length - (allMemBers.length % 10)) / 10;
     var arrAsc = allMemBers.sort(function (a, b) {
@@ -52,7 +52,7 @@ function getLeast(field) {
 
 
 //identify the members who most:
-function getMost(field) {
+function getMost(field, data) {
     var allMemBers = data.results[0].members;
     var prcTenS = (allMemBers.length - (allMemBers.length % 10)) / 10;
     var arrAsc = allMemBers.sort(function (a, b) {
@@ -67,21 +67,33 @@ function getMost(field) {
 }
 
 
+/*var statistics = {
+    "Dem": getMemAndPrcVoteParty("R", "Republican", data),
+    "Rep": getMemAndPrcVoteParty("D", "Democrat", data),
+    "Ind": getMemAndPrcVoteParty("I", "Independent", data),
+    "Total": getTotalMemPrcWparty(data),
+    "leastLoyal": getLeast("votes_with_party_pct", data),
+    "mostLoyal": getMost("votes_with_party_pct", data),
+    "minAttendance": getMost("missed_votes_pct", data),
+    "maxAttendance": getLeast("missed_votes_pct", data)
+}*/
 
-statistics = {
-    "Dem": getMemAndPrcVoteParty("R", "Republican"),
-    "Rep": getMemAndPrcVoteParty("D", "Democrat"),
-    "Ind": getMemAndPrcVoteParty("I", "Independent"),
-    "Total": getTotalMemPrcWparty(),
-    "leastLoyal": getLeast("votes_with_party_pct"),
-    "mostLoyal": getMost("votes_with_party_pct"),
-    "minAttendance": getMost("missed_votes_pct"),
-    "maxAttendance": getLeast("missed_votes_pct")
-}
+
+
 
 
 //house at glance table
-function getAtGlanceRow(field) {
+function getAtGlanceRow(field, data) {
+    var statistics = {
+        "Dem": getMemAndPrcVoteParty("R", "Republican", data),
+        "Rep": getMemAndPrcVoteParty("D", "Democrat", data),
+        "Ind": getMemAndPrcVoteParty("I", "Independent", data),
+        "Total": getTotalMemPrcWparty(data),
+        "leastLoyal": getLeast("votes_with_party_pct", data),
+        "mostLoyal": getMost("votes_with_party_pct", data),
+        "minAttendance": getMost("missed_votes_pct", data),
+        "maxAttendance": getLeast("missed_votes_pct", data)
+    };
     var container = document.getElementById("atGlance");
     var row = container.insertRow();
     var Party = row.insertCell();
@@ -90,24 +102,35 @@ function getAtGlanceRow(field) {
     var att = document.createAttribute("class");
     att.value = "to-left";
     Party.setAttributeNode(att);
+    
     Party.innerHTML = statistics[field][0];
     NumMembers.innerHTML = statistics[field][1];
-    PrVotesparty.innerHTML = statistics[field][2]; 
+    PrVotesparty.innerHTML = statistics[field][2];
 }
 
-function getAtGlanceTable() {
-    getAtGlanceRow("Rep");
-    getAtGlanceRow("Dem");
-    getAtGlanceRow("Ind");
-    getAtGlanceRow("Total");
+function getAtGlanceTable(data) {
+    getAtGlanceRow("Rep", data);
+    getAtGlanceRow("Dem", data);
+    getAtGlanceRow("Ind", data);
+    getAtGlanceRow("Total", data);
 }
-getAtGlanceTable(); 
+
 
 
 // loyalty table
-function getTableLoyality(field, field2, field3, field4) {
+function getTableLoyality(field, field2, field3, field4, data) {
     var container = document.getElementById([field3]);
     if (!container) return;
+    var statistics = {
+        "Dem": getMemAndPrcVoteParty("R", "Republican", data),
+        "Rep": getMemAndPrcVoteParty("D", "Democrat", data),
+        "Ind": getMemAndPrcVoteParty("I", "Independent", data),
+        "Total": getTotalMemPrcWparty(data),
+        "leastLoyal": getLeast("votes_with_party_pct", data),
+        "mostLoyal": getMost("votes_with_party_pct", data),
+        "minAttendance": getMost("missed_votes_pct", data),
+        "maxAttendance": getLeast("missed_votes_pct", data)
+    };
     statistics[field4].forEach(function (item) {
         var container = document.getElementById([field3]);
         var row = container.insertRow();
@@ -123,14 +146,21 @@ function getTableLoyality(field, field2, field3, field4) {
     })
 }
 
-getTableLoyality("votes_with_party_pct", "total_votes", "leastLoyal", "leastLoyal");
-getTableLoyality("votes_with_party_pct", "total_votes", "mostLoyal", "mostLoyal");
-
 
 // attendance table
-function getTableAttendance(field, field2, field3, field4) {
+function getTableAttendance(field, field2, field3, field4, data) {
     var container = document.getElementById([field3]);
     if (!container) return;
+    var statistics = {
+        "Dem": getMemAndPrcVoteParty("R", "Republican", data),
+        "Rep": getMemAndPrcVoteParty("D", "Democrat", data),
+        "Ind": getMemAndPrcVoteParty("I", "Independent", data),
+        "Total": getTotalMemPrcWparty(data),
+        "leastLoyal": getLeast("votes_with_party_pct", data),
+        "mostLoyal": getMost("votes_with_party_pct", data),
+        "minAttendance": getMost("missed_votes_pct", data),
+        "maxAttendance": getLeast("missed_votes_pct", data)
+    };
     statistics[field4].forEach(function (item) {
         var container = document.getElementById([field3]);
         var row = container.insertRow();
@@ -145,8 +175,3 @@ function getTableAttendance(field, field2, field3, field4) {
         NumMissedVotes.innerHTML = item[field2];
     })
 }
-
-getTableAttendance("missed_votes_pct", "missed_votes", "leastAttend", "minAttendance");
-getTableAttendance("missed_votes_pct", "missed_votes", "mostAttend",  "maxAttendance");
-
- 

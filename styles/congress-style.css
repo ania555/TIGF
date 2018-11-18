@@ -1,3 +1,10 @@
+i {
+    color: steelblue;
+}
+nav {
+    background-color: gainsboro;
+}
+
 th {
     text-align: center;
 }
@@ -48,7 +55,5 @@ p {
     
     background-color: gainsboro;
     padding: 20px;
-    text-align: center;
-    
-    
+    text-align: center; 
 }
