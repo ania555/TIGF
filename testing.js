@@ -1,3 +1,8 @@
+let arrX = [4, 6, 24, 95, 26, 94];
+
+console.log(arrX.indexOf(6));
+
+
 var app = new Vue({
     el: "#app",
     data: {
@@ -9,32 +14,46 @@ var app = new Vue({
 
 
 
+
+
 var appFilter = new Vue({
-    el: "#listener",
+    el: "#tableFiltered",
     data: {
         num: 15,
         members: {},
-        message: "cos tam",
         checkedPartys: [],
         selected: "All",
-        selectedMembers: {}
     },
     computed: {
         filteredMembers: function () {
-            var appFilter = this;
-            var state = appFilter.selected;
+            var aF = this;
+            var sTate = aF.selected;
+            var paRty = aF.checkedPartys;
 
-            if (state === "All") {
-                return appFilter.members;
+            if (sTate === "All" && paRty.length == 0) {
+                return aF.members;
+            } else if (paRty.length == 0) {
+                return aF.members.filter(function (person) {
+                    return person.state === aF.selected;
+                })
+            } else if (sTate === "All" && paRty.length != 0) {
+                return aF.members.filter(function (person) {
+                    if (aF.checkedPartys.indexOf(person.party) > -1) {
+                        return person.party;
+                    }
+
+                })
             } else {
-                return appFilter.members.filter(function (person) {
-                    return person.state === appFilter.selected;
-                });
+                return aF.members.filter(function (person) {
+                    if (aF.checkedPartys.indexOf(person.party) > -1 && person.state === aF.selected) {
+                        return person;
+                    }
+                })
+
             }
         }
     }
-    
-})
+});
 
 
 
@@ -46,22 +65,6 @@ var appFilter = new Vue({
 //            {
 //                name: "Bill Gates",
 //                category: "Tech"
-//            },
-//            {
-//                name: "Steve Jobs",
-//                category: "Tech"
-//            },
-//            {
-//                name: "Jeff Bezos",
-//                category: "Tech"
-//            },
-//            {
-//                name: "George Clooney",
-//                category: "Entertainment"
-//            },
-//            {
-//                name: "Meryl Streep",
-//                category: "Entertainment"
 //            },
 //            {
 //                name: "Amy Poehler",
@@ -101,52 +104,8 @@ var appFilter = new Vue({
 
 
 
-
-
-
-
-
-//computed: {
-//selectedMembers() {
-//    const search = this.checkedPartys
-//    if (!search) return this.members;
-//    return this.members.filter(m => m.party.indexOf(search) > -1);
-//}
-//}
-//})
-
-
-//        computed: {
-//            selectedMembers() {
-//                const search = this.checkedPartys
-//
-//                if (!search) return this.members;
-//
-//                return this.members.filter(m => m.party.indexOf(search) > -1);
-//            }
-
-
-////Array witn only the members that accomplish the values inside the filter method.
-//var filteredMambers = data.members.filter(function (oneMember) {
-//    //        console.log(oneMember.first_name)
-//
-//    //this var can be only true or false
-//    var genderFilter = checkedChaeckboxes.length == 0 || checkedChaeckboxes.includes(oneMember.gender);
-//    //        console.log({genderFilter})
-//
-//    //this var can be only true or false
-//    var stateFilter = stateValue == "all" || stateValue == oneMember.state
-//    //        console.log({stateFilter})
-//    //        
-//    //If both vars return true, the member is included in this array.
-//    return genderFilter && stateFilter;
-//})
-////    console.log({filteredMambers})
-
-
-
-
-let url = "https://api.propublica.org/congress/v1/113/senate/members.json";
+let url1 = "https://api.propublica.org/congress/v1/113/senate/members.json";
+let url2 = "https://api.propublica.org/congress/v1/113/house/members.json";
 let myHeaders = new Headers({
     "X-API-Key": "ml65G61RHEAG2oGuuw1llVZVeaFW5NjnX2MHF7LS"
 });
@@ -155,11 +114,28 @@ const myInit = {
     headers: myHeaders,
     mode: 'cors'
 };
-fetch(url, myInit).then(function (response) {
+let selectSenate = document.querySelector("#senate");
+
+if (!selectSenate) {
+    fetch(url2, myInit).then(function (response) {
+            return response.json();
+        })
+        .then(function (json) {
+            console.log("congressmen");
+            app.members = json.results[0].members;
+            appFilter.members = json.results[0].members;
+            console.log(appFilter.members);
+        })
+        .catch(function (error) {
+            console.log("Request failed: " + error.message);
+        })
+}
+else {
+fetch(url1, myInit).then(function (response) {
         return response.json();
     })
     .then(function (json) {
-        console.log("check");
+        console.log("senators");
         app.members = json.results[0].members;
         appFilter.members = json.results[0].members;
         console.log(appFilter.members);
@@ -167,3 +143,4 @@ fetch(url, myInit).then(function (response) {
     .catch(function (error) {
         console.log("Request failed: " + error.message);
     })
+}

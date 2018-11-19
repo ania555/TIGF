@@ -9,7 +9,7 @@
 
 <body id="senate">
     <br><br><br>
-    <div id="listener">
+    <div id="tableFiltered">
         <div class="container">
             <div class="row">
                 <div class="col-0"></div>
@@ -17,15 +17,15 @@
                     <div>
                         <form action="" method="get">Filter by Party:
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="Re" value="R" name="myParty" v-model="checkedPartys" v-on:change="myFilter()">
+                                <input class="form-check-input" type="checkbox" id="Re" value="R" name="myParty" v-model="checkedPartys">
                                 <label class="form-check-label" for="Re">Republican</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="De" value="D" name="myParty" v-model="checkedPartys" v-on:change="myFilter()">
+                                <input class="form-check-input" type="checkbox" id="De" value="D" name="myParty" v-model="checkedPartys">
                                 <label class="form-check-label" for="De">Democrat</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="In" value="I" name="myParty" v-model="checkedPartys" v-on:change="myFilter()">
+                                <input class="form-check-input" type="checkbox" id="In" value="I" name="myParty" v-model="checkedPartys">
                                 <label class="form-check-label" for="In">Independent</label>
                             </div>
                         </form>
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="col-4">Filter by State:
-                    <select id="selectState" v-model="selected" >
+                    <select id="selectState" v-model="selected">
                         <option value="All">All</option>
                         <option value="AL">Alabama</option>
                         <option value="AK">Alaska</option>

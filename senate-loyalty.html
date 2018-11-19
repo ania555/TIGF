@@ -65,69 +65,87 @@
 
 
 
-
-    <div class="container">
-        <div class="row">
-            <div class="col-0"></div>
-            <div class="col-5">
-                <div>
-                    <h4>Party Loyalty</h4>
-                    <p>Those who consider themselves to be strong partisans, strong Democrats and strong Republicans respectively, tend to be the most faithful in voting for their party's nominee for office and legislation that backs their party's agenda. </p> <br> <br>
+    <div id="statistics">
+        <div class="container">
+            <div class="row">
+                <div class="col-0"></div>
+                <div class="col-5">
+                    <div>
+                        <h4>Party Loyalty</h4>
+                        <p>Those who consider themselves to be strong partisans, strong Democrats and strong Republicans respectively, tend to be the most faithful in voting for their party's nominee for office and legislation that backs their party's agenda. </p> <br> <br>
+                    </div>
                 </div>
-            </div>
-            <div class="col-1"></div>
-            <div class="col-6">
-                <h4>Senate at a glance</h4>
-                <table class="table">
-                    <thead>
+                <div class="col-1"></div>
+                <div class="col-6">
+                    <h4>Senate at a glance</h4>
+                    <table class="table">
                         <tr>
                             <th class="to-left">Party</th>
                             <th>Number of Reps</th>
                             <th>% Voted with Prty</th>
                         </tr>
-                    </thead>
-                    <tbody id="atGlance">
-                    </tbody>
-                </table>
+                        <tr>
+                            <td class="to-left">{{ rowRep[0] }}</td>
+                            <td>{{ rowRep[1] }}</td>
+                            <td>{{ rowRep[2] }}</td>
+                        </tr>
+                        <tr>
+                            <td class="to-left">{{ rowDem[0] }}</td>
+                            <td>{{ rowDem[1] }}</td>
+                            <td>{{ rowDem[2] }}</td>
+                        </tr>
+                        <tr>
+                            <td class="to-left">{{ rowInd[0] }}</td>
+                            <td>{{ rowInd[1] }}</td>
+                            <td>{{ rowInd[2] }}</td>
+                        </tr>
+                        <tr>
+                            <td class="to-left">{{ rowTotal[0] }}</td>
+                            <td>{{ rowTotal[1] }}</td>
+                            <td>{{ rowTotal[2] }}</td>
+                        </tr>
+
+                    </table>
+                </div>
             </div>
-        </div>
-    </div><br><br>
+        </div><br><br>
 
 
-    <div class="container">
-        <div class="row">
-            <div class="col-0"></div>
-            <div class="col-6">
+        <div class="container">
+            <div class="row">
+                <div class="col-0"></div>
+                <div class="col-6">
 
-                <h4>Least Loyal (Bottom 10% of Party)</h4>
-                <table class="table">
-                    <thead>
+                    <h4>Least Loyal (Bottom 10% of Party)</h4>
+                    <table class="table">
                         <tr>
                             <th class="to-left">Name</th>
                             <th>Number of Party Votes</th>
                             <th>% Party Votes</th>
                         </tr>
-                    </thead>
-                    <tbody id="leastLoyal">
-
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-0"></div>
-            <div class="col-6">
-                <h4>Most Loyal (Top 10% of Party)</h4>
-                <table class="table">
-                    <thead>
+                        <tr v-for="item in leastLoyal">
+                            <td class="to-left">{{ item.first_name }} {{ item.middle_name}} {{ item.last_name}}</td>
+                            <td>{{ (item.votes_with_party_pct * item.total_votes  / 100).toFixed(0) }}</td>
+                            <td>{{ item.votes_with_party_pct }}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-0"></div>
+                <div class="col-6">
+                    <h4>Most Loyal (Top 10% of Party)</h4>
+                    <table class="table">
                         <tr>
                             <th class="to-left">Name</th>
                             <th>Number of Party Votes</th>
                             <th>% Party Votes</th>
                         </tr>
-                    </thead>
-                    <tbody id="mostLoyal">
-
-                    </tbody>
-                </table>
+                        <tr v-for="item in mostLoyal">
+                            <td class="to-left">{{ item.first_name }} {{ item.middle_name}} {{ item.last_name}}</td>
+                            <td>{{ (item.votes_with_party_pct * item.total_votes  / 100).toFixed(0) }} </td>
+                            <td>{{ item.votes_with_party_pct }}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div><br><br>
@@ -135,13 +153,16 @@
     <div class="grid1">
         <footer id="item3" class="footer">2016 TGIF All Rights Reserved</footer>
     </div>
-    
-    
+
+
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    
+
+    <script src="stat-test.js"></script>
+    <!--
     <script src="att-loyal-s-h.js"></script>
     <script src="live-data.js"></script>
-    
+-->
+
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
