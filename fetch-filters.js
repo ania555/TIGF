@@ -42,7 +42,7 @@ var appStat = new Vue({
                 })
         }
 
-    },
+    }, 
     methods: {
         getRow: function (party, field) {
             let arMembs = [];
