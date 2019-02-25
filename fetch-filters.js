@@ -1,8 +1,10 @@
-var appStat = new Vue({
-    el: "#statistics",
+var appFilter = new Vue({
+    el: "#tableFiltered",
     data: {
         num: 15,
-        members: []
+        members: [],
+        checkedPartys: [],
+        selected: "All"
     },
     created() {
         let url1 = "https://api.propublica.org/congress/v1/113/senate/members.json";
@@ -42,117 +44,83 @@ var appStat = new Vue({
                 })
         }
 
-    }, 
-    methods: {
-        getRow: function (party, field) {
-            let arMembs = [];
-            for (var i = 0; i < this.members.length; i++) {
-                if (this.members[i].party == [party]) {
-                    arMembs.push(this.members[i]);
-                }
-            }
-            var sumVote = 0;
-            var voteWithPty;
-            for (var i = 0; i < arMembs.length; i++) {
-                sumVote = sumVote + arMembs[i].votes_with_party_pct;
-            }
-            if (arMembs.length == 0) {
-                voteWithPty = 0
-            } else {
-                var voteWithPty = sumVote / arMembs.length;
-                voteWithPty = voteWithPty.toFixed(2);
-            }
-            let arrAtGlance = [field, arMembs.length, voteWithPty];
-            return arrAtGlance;
-        },
-
-        getTotal: function () {
-            var sumTotal = 0;
-            for (var i = 0; i < this.members.length; i++) {
-                sumTotal = sumTotal + this.members[i].votes_with_party_pct;
-            }
-            var votWPtyTotal = sumTotal / this.members.length;
-            votWPtyTotal = votWPtyTotal.toFixed(2);
-            let arrTable1Row = ["Total", this.members.length, votWPtyTotal];
-            return arrTable1Row;
-        }
     },
     computed: {
-        leastLoyal: function () {
-            var prcTenS = (this.members.length - (this.members.length % 10)) / 10;
-            var arrSort = this.members.sort((a, b) => a.votes_with_party_pct - b.votes_with_party_pct);
-            var arrVoted = [];
-            for (var i = 0; i < this.members.length; i++) {
-                if (arrSort[i].votes_with_party_pct != 0) {
-                arrVoted.push(arrSort[i]);
-                }
-            }
-            var arrLeast = [];
-            for (var i = 0; i < prcTenS; i++) {
-                    arrLeast.push(arrVoted[i]);
-                }
-            return arrLeast;
-        },
-        mostLoyal: function () {
-            var prcTenS = (this.members.length - (this.members.length % 10)) / 10;
-            var arrSort = this.members.sort((a, b) => a.votes_with_party_pct - b.votes_with_party_pct);
-            var arrMost = [];
-            for (var i = arrSort.length - 1; i > arrSort.length - 1 - prcTenS; i--) {
-                arrMost.push(arrSort[i]);
-            }
-            return arrMost;
-        },
-        mostAttending: function () {
-            var prcTenS = (this.members.length - (this.members.length % 10)) / 10;
-            var arrSort = this.members.sort((a, b) => a.missed_votes_pct - b.missed_votes_pct);
-            var arrLeast = [];
-            for (var i = 0; i < prcTenS; i++) {
-                arrLeast.push(arrSort[i]);
-            }
-            return arrLeast;
-        },
-        leastAttending: function () {
-            var prcTenS = (this.members.length - (this.members.length % 10)) / 10;
-            var arrSort = this.members.sort((a, b) => a.missed_votes_pct - b.missed_votes_pct);
-            var arrMost = [];
-            for (var i = arrSort.length - 1; i > arrSort.length - 1 - prcTenS; i--) {
-                arrMost.push(arrSort[i]);
-            }
-            return arrMost;
-        },
-        rowRep: function () {
-            let arMembs = [];
-            for (var i = 0; i < this.members.length; i++) {
-                if (this.members[i].party == "R") {
-                    arMembs.push(this.members[i]);
-                }
-            }
-            var sumVote = 0;
-            var voteWithPty;
-            for (var i = 0; i < arMembs.length; i++) {
-                sumVote = sumVote + arMembs[i].votes_with_party_pct;
-            }
-            if (arMembs.length == 0) {
-                voteWithPty = 0
+        filteredMembers: function () {
+            var filMembs = appFilter.myFilter();
+            return filMembs;
+
+
+
+
+            //            var filtMembs = this.members.filter(oneMember => {
+            //                var partyFilter = this.checkedPartys.length == 0 || this.checkedPartys.includes(oneMember.party);
+            //                var stateFilter = this.selected == "all" || this.selected == oneMember.state;
+            //                return partyFilter && stateFilter;
+            //            })
+
+            //            var aF = this;
+            //            var sTate = aF.selected;
+            //            var paRty = aF.checkedPartys;
+            //
+            //            if (sTate === "All" && paRty.length == 0) {
+            //                return aF.members;
+            //            } else if (paRty.length == 0) {
+            //                return aF.members.filter(function (person) {
+            //                    return person.state === aF.selected;
+            //                })
+            //            } else if (sTate === "All" && paRty.length != 0) {
+            //                return aF.members.filter(function (person) {
+            //                    if (aF.checkedPartys.indexOf(person.party) > -1) {
+            //                        return person.party;
+            //                    }
+            //
+            //                })
+            //            } else {
+            //                return aF.members.filter(function (person) {
+            //                    if (aF.checkedPartys.indexOf(person.party) > -1 && person.state === aF.selected) {
+            //                        return person;
+            //                    }
+            //                })
+            //
+            //            }
+
+        }
+    },
+    methods: {
+        myFilter: function () {
+
+            var aF = this;
+            var sTate = aF.selected;
+            var paRty = aF.checkedPartys;
+
+            if (sTate === "All" && paRty.length == 0) {
+                return aF.members;
+            } else if (paRty.length == 0) {
+                return aF.members.filter(function (person) {
+                    return person.state === aF.selected;
+                })
+            } else if (sTate === "All" && paRty.length != 0) {
+                return aF.members.filter(function (person) {
+                    if (aF.checkedPartys.indexOf(person.party) > -1) {
+                        return person.party;
+                    }
+
+                })
             } else {
-                var voteWithPty = sumVote / arMembs.length;
-                voteWithPty = voteWithPty.toFixed(2);
+                return aF.members.filter(function (person) {
+                    if (aF.checkedPartys.indexOf(person.party) > -1 && person.state === aF.selected) {
+                        return person;
+                    }
+                })
+
             }
-            let arrAtGlance = ["Republican", arMembs.length, voteWithPty];
-            return arrAtGlance;
-        },
-        rowDem: function () {
-            var arrRowD = appStat.getRow("D", "Democrat");
-            return arrRowD;
-        },
-        rowInd: function () {
-            var arrRowI = appStat.getRow("I", "Independent");
-            return arrRowI;
-        },
-        rowTotal: function () {
-            var arrRow = appStat.getTotal();
-            return arrRow;
+
+            //            var filtMembs = appFilter.members.filter(oneMember => {
+            //                var partyFilter = appFilter.checkedPartys.length == 0 || appFilter.checkedPartys.includes(oneMember.party);
+            //                var stateFilter = appFilter.selected == "all" || appFilter.selected == oneMember.state;
+            //                return partyFilter && stateFilter;
+            //            })
         }
     }
 });
-

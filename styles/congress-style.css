@@ -1,8 +1,18 @@
-i {
-    color: steelblue;
+body {
+	font-family: Arial Narrow, Arial, sans-serif;
 }
+
+i {
+    color: blue;
+}
+#blue {
+	color: blue;
+}
+
 nav {
     background-color: gainsboro;
+	font-size: 18px;
+	font-weight: 600;
 }
 
 th {
@@ -14,19 +24,29 @@ td {
 }
 
 .to-left {
-    text-align: left;
-     
+    text-align: left;     
 }
 
 p {
     text-align: justify;
 }
 
-.grid1 {
+#grid1 {
     display: grid;
     grid-template-columns: 50px 80px auto auto 50px;
     grid-template-rows: auto auto;
 }
+
+#grid2 {
+	display: grid;	
+	grid-template-columns: 50px auto 50px;
+}
+
+#grid3 {
+	display: grid;	
+	grid-template-columns: 50px auto 50px;
+} 
+
 #item1 {
     grid-column: 2;
     grid-row: 1;
@@ -44,65 +64,64 @@ p {
     font-weight: bold;
 }
 #item3 {
-    grid-column: 2/span 3;  
+    grid-column: 2;
+
 }
 #mail {
     grid-column: 4;
+	grid-row: 1;
     text-align: right;
     padding: 45px;
     font-weight: bold;
 }
-.footer {
-    
+#footer { 
+	grid-column: 2;
     background-color: gainsboro;
-    padding: 20px;
-    text-align: center; 
+    padding: 30px;
+    text-align: center;
+}
+
+#congressmen {
+	height: 270px;
+	overflow: auto;
+}
+
+#senators {
+	height: 270px;
+	overflow: auto;
+}
+
+#topAttendanceHouse, #bottomAttendanceHouse, #topAttendanceSenate, #bottomAttendanceSenate {
+	height: 240px;
+	overflow: auto;
+}
+
+
+ #topLoyaltySenate, #bottomLoyaltySenate, #topLoyaltyHouse, #bottomLoyaltyHouse {
+	height: 240px;
+	overflow: auto;
+}
+
+#selectForm {
+	position: relative;
+	bottom: 5px;
+	left: 50px;
+}
+
+#selectState {
+	width: 170px;
+}
+
+span {
+	padding-right: 10px;
+}
+
+#bottomTables {
+	position: relative;
+	bottom: 20px;
 }
 
 
 
-.looping-rhombuses-spinner, .looping-rhombuses-spinner * {
-      box-sizing: border-box;
-    }
 
-    .looping-rhombuses-spinner {
-      width: calc(15px * 4);
-      height: 15px;
-      position: relative;
-    }
 
-    .looping-rhombuses-spinner .rhombus {
-      height: 15px;
-      width: 15px;
-      background-color: #ff1d5e;
-      left: calc(15px * 4);
-      position: absolute;
-      margin: 0 auto;
-      border-radius: 2px;
-      transform: translateY(0) rotate(45deg) scale(0);
-      animation: looping-rhombuses-spinner-animation 2500ms linear infinite;
-    }
-
-    .looping-rhombuses-spinner .rhombus:nth-child(1) {
-      animation-delay: calc(2500ms * 1 / -1.5);
-    }
-
-    .looping-rhombuses-spinner .rhombus:nth-child(2) {
-      animation-delay: calc(2500ms * 2 / -1.5);
-    }
-
-    .looping-rhombuses-spinner .rhombus:nth-child(3) {
-      animation-delay: calc(2500ms * 3 / -1.5);
-    }
-
-    @keyframes looping-rhombuses-spinner-animation {
-      0% {
-        transform: translateX(0) rotate(45deg) scale(0);
-      }
-      50% {
-        transform: translateX(-233%) rotate(45deg) scale(1);
-      }
-      100% {
-        transform: translateX(-466%) rotate(45deg) scale(0);
-      }
-    }

@@ -1,198 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/congress-style.css">
-    <title>Senate attendance</title>
+    <title>Fetch-test</title>
 </head>
 
 <body id="senate">
-    <header>
-        <div class="grid1">
-            <img src="TGFI_logo.png" alt="TGIF logo" id="item1">
-            <h1 id="item2">TGIF</h1>
-        </div>
-    </header>
-
-    <div class="grid1">
-        <nav id="item3" class="navbar navbar-expand-lg navbar-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Congress 113
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="house.html">House</a>
-                            <a class="dropdown-item" href="senate.html">Senate</a>
-                        </div>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Attendance
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="house-attendance.html">House</a>
-                            <a class="dropdown-item" href="senate-attendance.html">Senate</a>
-                        </div>
-                    </li>
-
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Party Loyalty
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="house-loyalty.html">House</a>
-                            <a class="dropdown-item" href="senate-loyalty.html">Senate</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <br>
-
-
-
-    <div id="statistics">
+    <br><br><br>
+    <div id="tableFiltered">
         <div class="container">
             <div class="row">
                 <div class="col-0"></div>
-                <div class="col-5">
+                <div class="col-8">
                     <div>
-                        <h4>Attendance</h4>
-                        <p>The Constitution specifies that a majority of members constitutes a quorum to do business in each house. Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in most cases, debates continue even if a majority is not present.</p>
-
-                        <p>The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p> <br> <br>
-                    </div>
+                        <form action="" method="get">Filter by Party:
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="Re" value="R" name="myParty" v-model="checkedPartys">
+                                <label class="form-check-label" for="Re">Republican</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="De" value="D" name="myParty" v-model="checkedPartys">
+                                <label class="form-check-label" for="De">Democrat</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="In" value="I" name="myParty" v-model="checkedPartys">
+                                <label class="form-check-label" for="In">Independent</label>
+                            </div>
+                        </form>
+                        <span>Checked partys: {{ checkedPartys }}</span>
+                    </div><br>
                 </div>
-                <div class="col-1"></div>
-                <div class="col-6">
-                    <div>
-                        <h4>Senate at a glance</h4>
-                        <table class="table">
-                            <tr>
-                                <th>Party</th>
-                                <th>Number of Reps</th>
-                                <th>% Voted with Party</th>
-                            </tr>
-                            <tr>
-                                <td class="to-left">{{ rowRep[0] }}</td>
-                                <td>{{ rowRep[1] }}</td>
-                                <td>{{ rowRep[2] }}</td>
-                            </tr>
-                            <tr>
-                                <td class="to-left">{{ rowDem[0] }}</td>
-                                <td>{{ rowDem[1] }}</td>
-                                <td>{{ rowDem[2] }}</td>
-                            </tr>
-                            <tr>
-                                <td class="to-left">{{ rowInd[0] }}</td>
-                                <td>{{ rowInd[1] }}</td>
-                                <td>{{ rowInd[2] }}</td>
-                            </tr>
-                            <tr>
-                                <td class="to-left">{{ rowTotal[0] }}</td>
-                                <td>{{ rowTotal[1] }}</td>
-                                <td>{{ rowTotal[2] }}</td>
-                            </tr>
-                        </table>
-                    </div>
+
+                <div class="col-4">Filter by State:
+                    <select id="selectState" v-model="selected">
+                        <option value="All">All</option>
+                        <option value="AL">Alabama</option>
+                        <option value="AK">Alaska</option>
+                        <option value="AZ">Arizona</option>
+                        <option value="AR">Arkansas</option>
+                        <option value="CA">California</option>
+                        <option value="CO">Colorado</option>
+                        <option value="CT">Connecticut</option>
+                        <option value="DE">Delaware</option>
+                        <option value="FL">Florida</option>
+                        <option value="GA">Georgia</option>
+                        <option value="HI">Hawaii</option>
+                        <option value="ID">Idaho</option>
+                        <option value="IL">Illinois</option>
+                        <option value="IN">Indiana</option>
+                        <option value="IA">Iowa</option>
+                        <option value="KS">Kansas</option>
+                        <option value="KY">Kentucky</option>
+                        <option value="LA">Louisiana</option>
+                        <option value="ME">Maine</option>
+                        <option value="MD">Maryland</option>
+                        <option value="MA">Massachusetts</option>
+                        <option value="MI">Michigan</option>
+                        <option value="MN">Minnesota</option>
+                        <option value="MS">Mississippi</option>
+                        <option value="MO">Missouri</option>
+                        <option value="MT">Montana</option>
+                        <option value="NE">Nebraska</option>
+                        <option value="NV">Nevada</option>
+                        <option value="NH">New Hampshire</option>
+                        <option value="NJ">New Jersey</option>
+                        <option value="NM">New Mexico</option>
+                        <option value="NY">New York</option>
+                        <option value="NC">North Carolina</option>
+                        <option value="ND">North Dakota</option>
+                        <option value="OH">Ohio</option>
+                        <option value="OK">Oklahoma</option>
+                        <option value="OR">Oregon</option>
+                        <option value="PA">Pennsylvania</option>
+                        <option value="TX">Texas</option>
+                        <option value="UT">Utah</option>
+                        <option value="VT">Vermont</option>
+                        <option value="VA">Virginia</option>
+                        <option value="WA">Washington</option>
+                        <option value="WV">West Virginia</option>
+                        <option value="WI">Wisconsin</option>
+                        <option value="WY">Wyoming</option>
+                        <option value=""></option>
+                    </select>
+                    <span>Selected: {{ selected }}</span>
                 </div>
 
             </div>
         </div>
-
-
-
-
-
-
-        <div class="container">
-            <div class="row">
-                <div class="col-0"></div>
-                <div class="col-6">
-                    <h4>Least Engaged (Bottom 10% Attendance)</h4>
-                    <table class="table">
-                        <tr>
-                            <th class="to-left">Name</th>
-                            <th>Number of Missed Votes</th>
-                            <th>% Missed</th>
-                        </tr>
-                        <tr v-for="item in leastAttending">
-                            <td class="to-left">{{ item.first_name }} {{ item.middle_name}} {{ item.last_name}}</td>
-                            <td>{{ item.missed_votes }}</td>
-                            <td>{{ item.missed_votes_pct }}</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-0"></div>
-                <div class="col-6">
-                    <h4>Most Engaged (Top 10% Attendance)</h4>
-
-                    <table class="table">
-                        <tr>
-                            <th class="to-left">Name</th>
-                            <th>Number of Missed Votes</th>
-                            <th>% Missed</th>
-                        </tr>
-                        <tr v-for="item in mostAttending">
-                            <td class="to-left">{{ item.first_name }} {{ item.middle_name}} {{ item.last_name}}</td>
-                            <td>{{ item.missed_votes }}</td>
-                            <td>{{ item.missed_votes_pct }}</td>
-                        </tr>
-                    </table>
-
-                </div>
-            </div>
+        <div>
+            <table class="table">
+                <tr>
+                    <th class="to-left">Senator</th>
+                    <th>Party affiliation</th>
+                    <th>State</th>
+                    <th>Seniority</th>
+                    <th>Votes with party (%)</th>
+                </tr>
+                <tr v-for="item in filteredMembers">
+                    <td class="to-left"><a v-bind:href="item.url">{{ item.first_name }} {{ item.middle_name}} {{ item.last_name}}</a></td>
+                    <td>{{ item.party }}</td>
+                    <td>{{ item.state }}</td>
+                    <td>{{ item.seniority }}</td>
+                    <td>{{ item.votes_with_party_pct }}</td>
+                </tr>
+            </table>
         </div>
-    </div>
-    <template>
-        <div id="app">
-            <looping-rhombuses-spinner :animation-duration="2500" :rhombus-size="15" :color="#ff1d5e"/>
-        </div>
-    </template>
+    </div><br><br><br>
 
-    
-    
-    
 
-    <br><br>
-    <div class="grid1">
-        <footer id="item3" class="footer">2016 TGIF All Rights Reserved</footer>
-    </div>
 
+    <!--    <script src="live-data.js"></script>-->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="fetch-filters.js"></script>
-    <!--
-    <script src="live-data.js"></script>
-    <script src="att-loyal-s-h.js"></script>
--->
-    <script>
-        import {
-            LoopingRhombusesSpinner
-        } from 'epic-spinners'
-        export default {
-            components: {
-                LoopingRhombusesSpinner
-            }
-        }
-    </script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
-
 </html>
