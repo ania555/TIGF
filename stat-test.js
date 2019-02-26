@@ -2,7 +2,8 @@ var appStat = new Vue({
     el: "#statistics",
     data: {
         num: 15,
-        members: []
+        members: [],
+		isLoading: true,
     },
     created() {
         let url1 = "https://api.propublica.org/congress/v1/113/senate/members.json";
@@ -22,6 +23,7 @@ var appStat = new Vue({
                 })
                 .then((json) => {
                     console.log("congressmen");
+					this.isLoading = false;
                     this.members = json.results[0].members;
                     console.log(this.members)
                 })
@@ -34,6 +36,7 @@ var appStat = new Vue({
                 })
                 .then((json) => {
                     console.log("senators");
+					this.isLoading = false;
                     this.members = json.results[0].members;
                     console.log(this.members)
                 })

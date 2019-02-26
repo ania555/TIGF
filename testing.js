@@ -5,7 +5,6 @@ var appFilter = new Vue({
         members: {},
         checkedPartys: [],
         selected: "All",
-		isLoading: true,
     },
     created() {
         let url1 = "https://api.propublica.org/congress/v1/113/senate/members.json";
@@ -21,11 +20,11 @@ var appFilter = new Vue({
         let selectSenate = document.querySelector("#senate");
         if (!selectSenate) {
             fetch(url2, myInit).then((response) => {
-                    return response.json()
+                    return response.json()				
                 })
                 .then((json) => {
-                    console.log("congressmen");
-					isLoading = false;
+                    console.log("congressmen");	
+					this.isLoading = false;
                     this.members = json.results[0].members;
                     console.log(this.members)
                 })
@@ -38,7 +37,7 @@ var appFilter = new Vue({
                 })
                 .then((json) => {
                     console.log("senators");
-					isLoading = false;
+					this.isLoading = false;
                     this.members = json.results[0].members;
                     console.log(this.members)
                 })
